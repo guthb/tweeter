@@ -32,11 +32,11 @@ namespace Tweeter.Tests.DAL
             {
                 new Twit {
                     TwitId = 1,
-                    BaseUser = new ApplicationUser() { UserName = "michealb"}
+                    BaseUser = new ApplicationUser() { UserName = "radbrad"}
                 },
                 new Twit {
                     TwitId = 2,
-                    BaseUser = new ApplicationUser() { UserName = "sallym"}
+                    BaseUser = new ApplicationUser() { UserName = "sirrichard"}
                 }
 
             };
@@ -110,7 +110,7 @@ namespace Tweeter.Tests.DAL
             ConnectToDatastore();
 
             // Act
-            bool exists = Repo.UsernameExists("sallym");
+            bool exists = Repo.UsernameExists("radbrad");
 
             // Assert
             Assert.IsTrue(exists);
@@ -123,7 +123,7 @@ namespace Tweeter.Tests.DAL
             ConnectToDatastore();
 
             // Act
-            Twit found_twit = Repo.UsernameExistsOfTwit("sallym");
+            Twit found_twit = Repo.UsernameExistsOfTwit("radbrad");
 
             // Assert
             Assert.IsNotNull(found_twit);
@@ -139,7 +139,7 @@ namespace Tweeter.Tests.DAL
             Tweet a_tweet = new Tweet {
                 TweetId = 1,
                 Message = "my message",
-                Author = new Twit { TwitId = 1, BaseUser = new ApplicationUser { UserName = "jcockhren" } },
+                Author = new Twit { TwitId = 1, BaseUser = new ApplicationUser { UserName = "radbrad" } },
                 CreatedAt = DateTime.Now
             };
             Repo.AddTweet(a_tweet);
@@ -158,7 +158,7 @@ namespace Tweeter.Tests.DAL
             ConnectToDatastore();
 
             // Act
-            Repo.AddTweet("sallym", "my tweet!!!!");
+            Repo.AddTweet("radbrad", "my tweet!!!!");
 
             int expected_tweets = 1;
             int actual_tweets = Repo.Context.Tweets.Count();
@@ -177,14 +177,14 @@ namespace Tweeter.Tests.DAL
                 TweetId = 3,
                 Message = "my message",
                 CreatedAt = DateTime.Now,
-                Author = new Twit { TwitId = 3, BaseUser = new ApplicationUser { UserName = "jcockhren" } }
+                Author = new Twit { TwitId = 3, BaseUser = new ApplicationUser { UserName = "radbrad" } }
             };
             Tweet another_tweet = new Tweet
             {
                 TweetId = 4,
                 Message = "my message",
                 CreatedAt = DateTime.Now,
-                Author = new Twit { TwitId = 4, BaseUser = new ApplicationUser { UserName = "sallym" } }
+                Author = new Twit { TwitId = 4, BaseUser = new ApplicationUser { UserName = "sirrichard" } }
             };
             Repo.AddTweet(a_tweet);
             Repo.AddTweet(another_tweet);
@@ -206,7 +206,7 @@ namespace Tweeter.Tests.DAL
         {
             // Arrange
             ConnectToDatastore();
-            Repo.AddTweet("sallym", "my tweet!!!!");
+            Repo.AddTweet("radbrad", "my tweet!!!!");
             
             // Act
 
