@@ -26,6 +26,10 @@ namespace Tweeter
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                       "~/Scripts/app.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+                      "~/Scripts/angular.js",
+                      "~/Scripts/app.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));

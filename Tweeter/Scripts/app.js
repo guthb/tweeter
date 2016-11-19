@@ -1,4 +1,12 @@
-﻿$("#register-username").keyup(function () {
+﻿var app = angular.module('Tweeter', []);
+
+
+
+
+
+
+
+$("#register-username").keyup(function () {
     //$("form").submit(true);
     $("#username-ans").removeClass("glyphicon-ok");
     $("#username-ans").removeClass("glyphicon-remove");
