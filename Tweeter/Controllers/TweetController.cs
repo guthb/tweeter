@@ -13,12 +13,13 @@ namespace Tweeter.Controllers
 {
     public class TweetController : ApiController
     {
-        TweeterRepository Repo = new TweeterRepository();
+        //TweeterRepository Repo = new TweeterRepository();
+        private TweeterRepository apiTweeterController = new TweeterRepository();
 
         // GET api/<controller>
         public IEnumerable<Tweet> Get()
         {
-            return Repo.GetTweets();
+            return apiTweeterController.GetTweets();
         }
 
         // GET api/<controller>/5
@@ -33,17 +34,19 @@ namespace Tweeter.Controllers
             
             if (ModelState.IsValid && User.Identity.IsAuthenticated)
             {
-                string user_id = User.Identity.GetUserId();
-                ApplicationUser found_app_user = Repo.Context.Users.FirstOrDefault(u => u.Id == user_id);
-                Twit found_user = Repo.Context.TweeterUsers.FirstOrDefault(twit => twit.BaseUser.UserName == found_app_user.UserName);
+                //string user_id = User.Identity.GetUserId();
+                //ApplicationUser found_app_user = Repo.Context.Users.FirstOrDefault(u => u.Id == user_id);
+                //Twit found_user = Repo.Context.TweeterUsers.FirstOrDefault(twit => twit.BaseUser.UserName == found_app_user.UserName);
                 Tweet new_tweet = new Tweet
                 {
                     Message = tweet.Message,
                     ImageURL = tweet.ImageURL,
-                    Author = found_user,
+                    Author = apiTweeterController.GetTwitUser(User.Identity.GetUserId()),
                     CreatedAt = DateTime.Now
                 };
-                Repo.AddTweet(new_tweet);
+
+                //Repo.AddTweet(new_tweet);
+                apiTweeterController.AddTweet(new_tweet);
             }
             
         }
@@ -56,7 +59,9 @@ namespace Tweeter.Controllers
         // DELETE api/<controller>/5
         public void Delete(int id)
         {
-            Repo.RemoveTweet(id);
+            //Repo.RemoveTweet(id);
+            apiTweeterController.RemoveTweet(id);
+
         }
     }
 }

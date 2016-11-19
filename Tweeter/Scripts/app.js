@@ -1,15 +1,11 @@
 ﻿var app = angular.module('Tweeter', []);
 
 
-
-
-
-
-
 $("#register-username").keyup(function () {
     //$("form").submit(true);
     $("#username-ans").removeClass("glyphicon-ok");
     $("#username-ans").removeClass("glyphicon-remove");
+    $("input[type='submit']").removeClass('disabled');
     $.ajax({
         url: "/api/TwitUsername?candidate=" + $(this).val(),
         method: 'GET'
@@ -22,6 +18,7 @@ $("#register-username").keyup(function () {
         } else {
             $("#submit").removeAttr("disabled");
             $("#username-ans").addClass("glyphicon-ok");
+            $("input[type='submit']").removeClass('disabled');
         }
     }).fail(function (error) {
         console.log(error);
