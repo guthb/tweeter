@@ -1,4 +1,4 @@
-﻿var app = angular.module('Tweeter', []);
+﻿var app = angular.module("Tweeter", []);
 
 
 $("#register-username").keyup(function () {
@@ -54,17 +54,17 @@ $("#register-username").focusin(function () {
 */
 
 
-app.controller('TweeCtrl', function($scope, $http) {
+app.controller('TweetCtrl', function($scope, $http) {
     
     $scope.tweets = [
-        {
+        /*{
             username: "JakeFromStateFarm",
             message: "Hello",
             image: null,
             date: "Nov, 21 2016"
         },
         {
-            username: "FloFroProgressive",
+            username: "FloFromProgressive",
             message: "Progressive!",
             image: "http://placehold.it/350x150",
             date: "Nov, 20 2016"
@@ -74,11 +74,29 @@ app.controller('TweeCtrl', function($scope, $http) {
             message: "Hello Again",
             image: null,
             date: "Nov, 21 2016"
-         }
-    ];
+         } */
+    ]; 
+
+    $scope.running = false;
 
     $scope.getTweets = function () {
-          return $scope.tweets;
+
+        if (!$scope.running) {
+            $scope.running = true;
+            $http.get("api/Tweet")
+                .success(function (response) {
+                        console.log(response);
+                        $scope.tweets = response;
+                        /*
+                        for (var i = 0; i < response.length; i++) {
+                            $scope.tweets.push(response.data[i]);
+                        }*/
+                                                            
+                 })
+                .error(function (error) {
+                        console.log("failed!");
+                 });
+          }
+        return $scope.tweets;
         }
-    
 });

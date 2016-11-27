@@ -69,7 +69,7 @@
     
     
     
-     <div class="container body-content">
+     <div class="container body-content"  ng-app="Tweeter">
         @RenderBody()
         <hr />
         <footer>
@@ -79,6 +79,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/app")
     @RenderSection("scripts", required: false)
 </body>
 </html>
