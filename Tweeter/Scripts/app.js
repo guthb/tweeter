@@ -54,3 +54,31 @@ $("#register-username").focusin(function () {
 */
 
 
+app.controller('TweeCtrl', function($scope, $http) {
+    
+    $scope.tweets = [
+        {
+            username: "JakeFromStateFarm",
+            message: "Hello",
+            image: null,
+            date: "Nov, 21 2016"
+        },
+        {
+            username: "FloFroProgressive",
+            message: "Progressive!",
+            image: "http://placehold.it/350x150",
+            date: "Nov, 20 2016"
+        },
+        {
+            username: "JakeFromStateFarm",
+            message: "Hello Again",
+            image: null,
+            date: "Nov, 21 2016"
+         }
+    ];
+
+    $scope.getTweets = function () {
+          return $scope.tweets;
+        }
+    
+});
