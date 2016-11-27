@@ -29,9 +29,11 @@ namespace Tweeter.Controllers
         }
 
         // POST api/<controller>
-        public void Post([FromBody]TweetViewModel tweet)
+        public Dictionary<string, bool> Post([FromBody]TweetViewModel tweet)
         {
-            
+            Dictionary<string, bool> answer = new Dictionary<string, bool>();
+
+
             if (ModelState.IsValid && User.Identity.IsAuthenticated)
             {
                 //string user_id = User.Identity.GetUserId();
@@ -47,9 +49,16 @@ namespace Tweeter.Controllers
 
                 //Repo.AddTweet(new_tweet);
                 apiTweeterController.AddTweet(new_tweet);
+                answer.Add("Succesful", true);
             }
-            
-        }
+            else
+            {
+                answer.Add("Successful", false);     
+            }
+
+            return answer;
+        }           
+        
 
         // PUT api/<controller>/5
         public void Put(int id, [FromBody]string value)

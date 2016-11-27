@@ -253,6 +253,7 @@ namespace Tweeter.Tests.DAL
             Twit locate_twit = Repo.GetTwitUser("1");
 
             // Assert
+            Assert.IsNotNull(locate_twit);
             Assert.AreEqual("radbrad", locate_twit.BaseUser.UserName);
 
         }
